@@ -5,7 +5,9 @@ from pathlib import Path
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
+from app import db
 from app.api.notes import router as notes_router
+from app.api.sessions import router as sessions_router
 from app.api.transcribe_ws import router as transcribe_router
 from app.config import get_settings
 from app.notes.openai_compatible import OpenAICompatibleNoteGenerator
@@ -29,6 +31,8 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         )
     else:
         app.state.note_generator = None
+    db.init_db()
+    app.state.db_path = db.default_db_path()
     yield
 
 
@@ -42,4 +46,5 @@ async def health() -> dict[str, str]:
 
 app.include_router(transcribe_router)
 app.include_router(notes_router)
+app.include_router(sessions_router)
 app.mount("/", StaticFiles(directory=STATIC_DIR, html=True), name="static")

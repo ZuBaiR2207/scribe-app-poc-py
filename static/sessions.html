@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Past sessions — Wellness Scribe POC</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="banner">POC, test data only. Do not use real patient or client data.</div>
+  <main>
+    <h1>Past sessions</h1>
+    <p><a href="/">Back to recorder</a></p>
+    <table id="sessionTable">
+      <thead>
+        <tr><th>Date</th><th>Status</th><th>Consent</th><th></th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p id="detailStatus" class="status"></p>
+    <section id="detail" hidden>
+      <h2>Transcript</h2>
+      <pre id="detailTranscript" class="note-output"></pre>
+      <h2>Note</h2>
+      <pre id="detailNote" class="note-output"></pre>
+      <p id="detailNoteStatus" class="status"></p>
+      <textarea id="detailEdit" class="note-output" rows="12"></textarea>
+      <div class="controls">
+        <button id="detailSave" type="button">Save edit</button>
+        <button id="detailApprove" type="button">Approve</button>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="sessions.js"></script>
+</body>
+</html>

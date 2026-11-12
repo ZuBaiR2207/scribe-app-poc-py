@@ -11,6 +11,10 @@
   <main>
     <h1>Wellness Scribe</h1>
     <p class="note">Audio is processed on this computer and is not stored.</p>
+    <label class="consent">
+      <input id="consent" type="checkbox">
+      I have the client's consent to transcribe this session and send the transcript text to an external LLM to draft the note.
+    </label>
     <div class="controls">
       <label>Language
         <select id="language">
@@ -32,7 +36,12 @@
       <button id="generate" type="button" disabled>Generate note</button>
       <p class="warning">The transcript text (not the audio) is sent to an external LLM API to draft the note. Test data only.</p>
       <p id="noteStatus" class="status"></p>
-      <pre id="noteOutput" class="note-output"></pre>
+      <textarea id="noteOutput" class="note-output" rows="12" disabled></textarea>
+      <div class="controls">
+        <button id="saveNote" type="button" disabled>Save edit</button>
+        <button id="approveNote" type="button" disabled>Approve</button>
+      </div>
+      <p><a href="/sessions.html">Past sessions</a></p>
     </section>
   </main>
   <script type="module" src="app.js"></script>

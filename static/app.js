@@ -1,4 +1,5 @@
 const els = {
+  consent: document.getElementById("consent"),
   language: document.getElementById("language"),
   start: document.getElementById("start"),
   stop: document.getElementById("stop"),
@@ -8,6 +9,8 @@ const els = {
   generate: document.getElementById("generate"),
   noteStatus: document.getElementById("noteStatus"),
   noteOutput: document.getElementById("noteOutput"),
+  saveNote: document.getElementById("saveNote"),
+  approveNote: document.getElementById("approveNote"),
 };
 
 const segments = [];
@@ -16,6 +19,7 @@ let stream = null;
 let audioContext = null;
 let finishTimer = null;
 let hadError = false;
+let sessionId = null;
 
 function setStatus(text) {
   els.status.textContent = text;
@@ -47,6 +51,7 @@ function resetButtons() {
   els.stop.disabled = true;
   els.language.disabled = false;
   els.generate.disabled = segments.length === 0;
+  els.consent.disabled = false;
 }
 
 function handleMessage(event) {
@@ -73,18 +78,33 @@ function handleMessage(event) {
 }
 
 async function start() {
+  if (!els.consent.checked) {
+    setStatus("Tick the consent box before recording.");
+    return;
+  }
   hadError = false;
   segments.length = 0;
+  sessionId = null;
   els.start.disabled = true;
   els.language.disabled = true;
   els.generate.disabled = true;
+  els.consent.disabled = true;
+  els.noteOutput.value = "";
+  els.noteOutput.disabled = true;
+  els.saveNote.disabled = true;
+  els.approveNote.disabled = true;
   els.transcript.textContent = "";
   els.partial.textContent = "";
   els.noteStatus.textContent = "";
-  els.noteOutput.textContent = "";
   setStatus("Requesting microphone...");
 
   try {
+    const sessionResponse = await fetch("/api/sessions", { method: "POST" });
+    if (!sessionResponse.ok) {
+      throw new Error("Could not create a session record.");
+    }
+    sessionId = (await sessionResponse.json()).id;
+
     audioContext = new AudioContext({ sampleRate: 16000 });
     if (audioContext.sampleRate !== 16000) {
       throw new Error(`Browser gave ${audioContext.sampleRate} Hz audio; 16000 Hz is required.`);
@@ -162,21 +182,55 @@ function stop() {
   }, 300);
 }
 
-async function generateNote() {
-  els.generate.disabled = true;
-  els.noteOutput.textContent = "";
-  els.noteStatus.textContent = "Generating note...";
+async function finishSession() {
+  if (!sessionId || segments.length === 0) {
+    return;
+  }
   try {
-    const response = await fetch("/api/notes/generate", {
+    const response = await fetch(`/api/sessions/${sessionId}/finish`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ transcript: segments.join("\n") }),
     });
-    const data = await response.json();
     if (!response.ok) {
-      throw new Error(typeof data.detail === "string" ? data.detail : "Request was rejected.");
+      throw new Error("Could not save the session transcript.");
     }
-    els.noteOutput.textContent = data.note;
+    els.noteOutput.disabled = false;
+    els.noteOutput.value = "";
+  } catch (error) {
+    els.noteStatus.textContent = error.message;
+  }
+}
+
+async function generateNote() {
+  els.generate.disabled = true;
+  els.noteOutput.value = "";
+  els.noteStatus.textContent = "Generating note...";
+  try {
+    await finishSession();
+    let data;
+    if (sessionId) {
+      const response = await fetch(`/api/sessions/${sessionId}/note`, { method: "POST" });
+      data = await response.json();
+      if (!response.ok) {
+        throw new Error(typeof data.detail === "string" ? data.detail : "Request was rejected.");
+      }
+    } else {
+      const response = await fetch("/api/notes/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ transcript: segments.join("\n") }),
+      });
+      data = await response.json();
+      if (!response.ok) {
+        throw new Error(typeof data.detail === "string" ? data.detail : "Request was rejected.");
+      }
+    }
+    const note = typeof data.note === "string" ? data.note : data.draft;
+    els.noteOutput.value = note;
+    els.noteOutput.disabled = false;
+    els.saveNote.disabled = !sessionId;
+    els.approveNote.disabled = !sessionId;
     els.noteStatus.textContent = "Draft note ready (AI-generated: review before use).";
   } catch (error) {
     els.noteStatus.textContent = `Could not generate note: ${error.message}`;
@@ -185,6 +239,60 @@ async function generateNote() {
   }
 }
 
+async function saveNote() {
+  if (!sessionId) {
+    return;
+  }
+  els.saveNote.disabled = true;
+  try {
+    const response = await fetch(`/api/sessions/${sessionId}/note`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ note: els.noteOutput.value }),
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(typeof data.detail === "string" ? data.detail : "Request was rejected.");
+    }
+    els.noteStatus.textContent = "Edit saved.";
+  } catch (error) {
+    els.noteStatus.textContent = `Could not save edit: ${error.message}`;
+  } finally {
+    els.saveNote.disabled = false;
+  }
+}
+
+async function approveNote() {
+  if (!sessionId) {
+    return;
+  }
+  els.approveNote.disabled = true;
+  els.saveNote.disabled = true;
+  try {
+    if (els.noteOutput.value.trim()) {
+      await fetch(`/api/sessions/${sessionId}/note`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ note: els.noteOutput.value }),
+      });
+    }
+    const response = await fetch(`/api/sessions/${sessionId}/approve`, { method: "POST" });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(typeof data.detail === "string" ? data.detail : "Request was rejected.");
+    }
+    els.noteOutput.value = data.approved;
+    els.noteOutput.disabled = true;
+    els.noteStatus.textContent = "Note approved and locked.";
+  } catch (error) {
+    els.noteStatus.textContent = `Could not approve: ${error.message}`;
+    els.approveNote.disabled = false;
+    els.saveNote.disabled = false;
+  }
+}
+
 els.start.addEventListener("click", start);
 els.stop.addEventListener("click", stop);
 els.generate.addEventListener("click", generateNote);
+els.saveNote.addEventListener("click", saveNote);
+els.approveNote.addEventListener("click", approveNote);

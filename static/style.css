@@ -62,3 +62,19 @@ button {
   min-height: 3em;
   font-family: inherit;
 }
+
+.consent {
+  display: block;
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+#sessionTable {
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+#sessionTable th,
+#sessionTable td {
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  text-align: left;
+}
