@@ -44,3 +44,21 @@ button {
   font-style: italic;
   min-height: 1.5em;
 }
+
+.notes {
+  margin-top: 24px;
+  border-top: 1px solid #ddd;
+  padding-top: 16px;
+}
+.warning {
+  color: #92400e;
+  font-size: 0.9rem;
+}
+.note-output {
+  white-space: pre-wrap;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 12px;
+  min-height: 3em;
+  font-family: inherit;
+}
