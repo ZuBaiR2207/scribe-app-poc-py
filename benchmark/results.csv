@@ -1,0 +1,37 @@
+﻿model,mode,id,category,metric,error,detected_language,rtf,hypothesis
+base,auto,en_01,en,WER,0.037,en,0.353,"Good morning, today I would like to talk about my sleep. I usually go to bed around night, but I wake up several times during the night."
+base,auto,en_02,wellness,WER,0.2083,en,0.245,I have been talking magnesium and vitamin D supplement and I'm trying to follow a mediterranean diet with a less sugar and more visible.
+base,auto,en_03,en,WER,0.2174,en,0.186,"My main goal is to reduce stress, I walk, I will try some breathing exercise, exercises every morning, and short work after lunch."
+base,auto,ms_01,ms,WER,0.375,id,0.115,Selamat pagi hari ini saya mahu bercakap tentang tidur saya. Bisa sang ya saya tidur sejak itu 3 malam. Tetapi saya tersyalga beberapa naik gali pada waktu malam.
+base,auto,ms_02,ms,WER,0.4,ms,0.125,"Saya sedang kubah menggurangkan gula dan makan Lebih banyak saya udah setabah, buah saya juga minum saya ada kosong setiap hari."
+base,auto,ms_03,ms,WER,1.0,en,0.396,think I heard it
+base,auto,mix_01,mixed,WER,1.0,jw,0.161,"Bola takio spleen balik, tetang milu plantu, sayanaka trai, intermediate fasting, tapi takut pinangu."
+base,auto,mix_02,mixed,WER,1.4118,en,0.334,"Actually my main concern, he lost stress due to the temperature, so I wanted to learn some reading exercise, young senan debout did rumo."
+base,auto,mix_03,mixed,WER,1.0909,en,0.19,"Good morning today. I like to talk about my sleep. I usually go to bed around midnight, but I wake up several times during the night."
+base,fixed,en_01,en,WER,0.037,en,0.129,"Good morning, today I would like to talk about my sleep. I usually go to bed around night, but I wake up several times during the night."
+base,fixed,en_02,wellness,WER,0.2083,en,0.167,I have been talking magnesium and vitamin D supplement and I'm trying to follow a mediterranean diet with a less sugar and more visible.
+base,fixed,en_03,en,WER,0.2174,en,0.106,"My main goal is to reduce stress, I walk, I will try some breathing exercise, exercises every morning, and short work after lunch."
+base,fixed,ms_01,ms,WER,0.3333,ms,0.071,Selamat pagi hari ini saya mahu bercakap tentang tidur saya. Bisa sanggia saya tidur sejak kita tiaga malam. Tetapi saya tersyalga beberapa nak gali pada waktu malam.
+base,fixed,ms_02,ms,WER,0.4,ms,0.08,"Saya sedang kubah menggurangkan gula dan makan Lebih banyak saya udah setabah, buah saya juga minum saya ada kosong setiap hari."
+base,fixed,ms_03,ms,WER,0.8333,ms,0.089,"Matlah mata utama sayai, ya lah Mingurukan Taka al-adakana di tempat kursa Sayakan kubas Senaman Furnafasan Setiap, Setiapagi Dan berjalan Kaki sabar berten Seluruh kemakan Tinggah hari"
+base,fixed,mix_01,mixed,WER,1.0,ms,0.095,Bola tak yuk spleen balik Tetang miru plan 2 Saya nak coba intermediate fasting Tapi takut penang
+base,fixed,mix_02,mixed,WER,1.0588,ms,0.433,"Mereka berkata, dia berkata, di tempat kuzer. Jadi, saya nak berjaya di tempat kuzer. Yang senang dibaut di rumah."
+base,fixed,mix_03,mixed,WER,1.1364,ms,0.612,Selamat malam. today I'd like to talk about my sleep. I usually go to bed around midnight. but I wake up several times during the night.
+small,auto,en_01,en,WER,0.0741,en,0.604,Good morning. Today I would like to talk about my sleep. I usually go to the bed around night but I wake up several times during the night.
+small,auto,en_02,wellness,WER,0.1667,en,0.483,I have been talking magnesium and vitamin D supplement and I'm trying to follow a Mediterranean diet with less sugar and more vegetable.
+small,auto,en_03,en,WER,0.1739,en,0.484,"My main goal is to reduce stress, I walk, I will try some breathing exercises every morning and short work after lunch."
+small,auto,ms_01,ms,WER,0.25,id,0.306,Selamat pagi hari ini saya mahu bercekap tentang tidur saya. Bisa saya tidur sedikit dan jaga malam. Tetapi saya terjaga beberapa naik kali pada waktu malam.
+small,auto,ms_02,ms,WER,0.35,id,0.521,"saya sedang menggulangkan gula dan makan, lebih banyak saya sudah setahu buah saya juga minum air da kosong setiap hari"
+small,auto,ms_03,ms,WER,0.5833,ms,0.312,Mata-mata utama saya yalah minggu-rukan tekanah ditampat kerja. Saya akan kubah senaman pernafasan setiap pagi dan berjalan ke. Kaki sebab berten selap semakan tinggah hari.
+small,auto,mix_01,mixed,WER,0.95,id,0.383,boleh takut plane balik tentang mil plane 2 saya nak ketry intermediate fasting tapi takut penang
+small,auto,mix_02,mixed,WER,1.6471,en,0.772,"Actually, my main concern is that he lost his stress due to Tampata Causa. So I want to learn some reading exercises. Yung Sanong Dibout did a rumor."
+small,auto,mix_03,mixed,WER,1.1364,en,0.367,Good morning. Today I would like to talk about my sleep. I usually go to bed around midnight But I wake up several times during the night
+small,fixed,en_01,en,WER,0.0741,en,0.233,Good morning. Today I would like to talk about my sleep. I usually go to the bed around night but I wake up several times during the night.
+small,fixed,en_02,wellness,WER,0.1667,en,0.19,I have been talking magnesium and vitamin D supplement and I'm trying to follow a Mediterranean diet with less sugar and more vegetable.
+small,fixed,en_03,en,WER,0.1739,en,0.189,"My main goal is to reduce stress, I walk, I will try some breathing exercises every morning and short work after lunch."
+small,fixed,ms_01,ms,WER,0.25,ms,0.128,Selamat pagi hari ini saya mahu bercekap tentang tidur saya. Bisa saya tidur sedikit dan jaga malam. Tetapi saya terjaga beberapa naik kali pada waktu malam.
+small,fixed,ms_02,ms,WER,0.35,ms,0.132,Saya sedang mengurangkan gula dan makan lebih banyak saya sudah setabuah. Saya juga minum ayah dah kosong setiap hari.
+small,fixed,ms_03,ms,WER,0.5833,ms,0.16,Mata-mata utama saya yalah minggu-rukan tekanah ditampat kerja. Saya akan kubah senaman pernafasan setiap pagi dan berjalan ke. Kaki sebab berten selap semakan tinggah hari.
+small,fixed,mix_01,mixed,WER,1.0,ms,0.18,Boleh tak use plan balik tentang mill plan 2. Saya nak ke-try intermediate fasting. Tapi takut penang.
+small,fixed,mix_02,mixed,WER,1.5294,ms,0.169,"Actually, my main concern is that he was stressed due to Tampak Takaza, so I want to learn some reading exercise. Yang senang dibaut di rumah."
+small,fixed,mix_03,mixed,WER,1.0909,ms,0.233,"Selamat pagi hari ini saya ingin bercakap tentang tidur saya, saya selalu pergi ke bilik sepanjang malam tetapi saya bangun beberapa kali semasa malam"
