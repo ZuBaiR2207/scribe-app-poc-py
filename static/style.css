@@ -1,0 +1,46 @@
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  background: #fafafa;
+  color: #111;
+}
+.banner {
+  background: #b45309;
+  color: #fff;
+  text-align: center;
+  padding: 8px;
+  font-weight: 600;
+}
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+}
+.note {
+  color: #555;
+  margin-top: 0;
+}
+.controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 16px 0;
+}
+button {
+  padding: 8px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.status {
+  color: #555;
+  min-height: 1.5em;
+}
+#transcript p {
+  margin: 0 0 8px;
+  color: #111;
+}
+.partial {
+  color: #888;
+  font-style: italic;
+  min-height: 1.5em;
+}

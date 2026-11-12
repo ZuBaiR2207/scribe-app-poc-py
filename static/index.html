@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wellness Scribe POC</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="banner">POC, test data only. Do not use real patient or client data.</div>
+  <main>
+    <h1>Wellness Scribe</h1>
+    <p class="note">Audio is processed on this computer and is not stored.</p>
+    <div class="controls">
+      <label>Language
+        <select id="language">
+          <option value="auto">Auto-detect</option>
+          <option value="en">English</option>
+          <option value="ms">Malay</option>
+          <option value="zh">Mandarin</option>
+          <option value="ta">Tamil (untested)</option>
+        </select>
+      </label>
+      <button id="start" type="button">Start</button>
+      <button id="stop" type="button" disabled>Stop</button>
+    </div>
+    <p id="status" class="status">Idle</p>
+    <section id="transcript" aria-live="polite"></section>
+    <p id="partial" class="partial"></p>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
