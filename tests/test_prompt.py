@@ -1,9 +1,10 @@
 from app.notes.prompt import SECTION_HEADINGS, build_messages, build_system_prompt
 
 
-def test_system_prompt_lists_all_headings_in_order():
+def test_system_prompt_lists_all_labels_in_order():
     prompt = build_system_prompt()
-    positions = [prompt.index(f"## {heading}") for heading in SECTION_HEADINGS]
+    layout = prompt[prompt.index("WELLNESS SESSION NOTE") :]
+    positions = [layout.index(heading.upper()) for heading in SECTION_HEADINGS]
     assert positions == sorted(positions)
 
 
@@ -28,12 +29,16 @@ def test_transcript_cannot_close_the_delimiter_tag():
     assert content.count("</transcript>") == 1
 
 
-def test_system_prompt_has_metadata_line():
-    prompt = build_system_prompt()
-    assert "Session date" in prompt
-    assert "Session type" in prompt
+def test_template_is_plain_text_without_markdown():
+    template = build_system_prompt()
+    start = template.index("WELLNESS SESSION NOTE")
+    body = template[start:]
+    assert "•" in body
+    assert "☐" in body
+    assert "##" not in body
+    assert "- [ ]" not in body
 
 
-def test_checklist_rule_present():
-    prompt = build_system_prompt()
-    assert "- [ ]" in prompt
+def test_template_has_metadata_fields():
+    assert "Date:" in build_system_prompt()
+    assert "Session type:" in build_system_prompt()
