@@ -26,3 +26,14 @@ def test_transcript_cannot_close_the_delimiter_tag():
     content = messages[1]["content"].lower()
     assert content.count("<transcript>") == 1
     assert content.count("</transcript>") == 1
+
+
+def test_system_prompt_has_metadata_line():
+    prompt = build_system_prompt()
+    assert "Session date" in prompt
+    assert "Session type" in prompt
+
+
+def test_checklist_rule_present():
+    prompt = build_system_prompt()
+    assert "- [ ]" in prompt
