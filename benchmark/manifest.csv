@@ -1,0 +1,13 @@
+id,category,lang,reference
+en_01,en,en,"Good morning. Today I would like to talk about my sleep. I usually go to bed around midnight, but I wake up several times during the night."
+en_02,wellness,en,"I have been taking magnesium and vitamin D supplements, and I am trying to follow a Mediterranean diet with less sugar and more vegetables."
+en_03,en,en,"My main goal is to reduce stress at work. I will try some breathing exercises every morning and a short walk after lunch."
+ms_01,ms,ms,"Selamat pagi. Hari ini saya mahu bercakap tentang tidur saya. Biasanya saya tidur sekitar tengah malam, tetapi saya terjaga beberapa kali pada waktu malam."
+ms_02,ms,ms,"Saya sedang cuba mengurangkan gula dan makan lebih banyak sayur serta buah-buahan. Saya juga minum air kosong setiap hari."
+ms_03,ms,ms,"Matlamat utama saya ialah mengurangkan tekanan di tempat kerja. Saya akan cuba senaman pernafasan setiap pagi dan berjalan kaki sebentar selepas makan tengah hari."
+mix_01,mixed,ms,"Hari ini saya rasa very tired, sebab semalam saya tidur lambat. Doktor suruh saya ambil vitamin D dan kurangkan kopi."
+mix_02,mixed,ms,"Boleh tak you explain balik tentang meal plan tu? Saya nak try intermittent fasting tapi takut pening."
+mix_03,mixed,ms,"Actually my main concern ialah stress di tempat kerja, so I want to learn some breathing exercises yang senang dibuat di rumah."
+zh_01,zh,zh,"早上好。今天我想聊一聊我的睡眠。我通常在半夜睡觉，晚上会醒来好几次。"
+en_01_noisy,noisy,en,"Good morning. Today I would like to talk about my sleep. I usually go to bed around midnight, but I wake up several times during the night."
+ms_01_noisy,noisy,ms,"Selamat pagi. Hari ini saya mahu bercakap tentang tidur saya. Biasanya saya tidur sekitar tengah malam, tetapi saya terjaga beberapa kali pada waktu malam."
