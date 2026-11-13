@@ -21,8 +21,6 @@ A proof-of-concept documentation assistant for wellness practitioners: record a 
 ## Requirements
 
 - Windows (or any OS with Python), Python 3.12
-- 8 GB RAM, CPU only — no GPU needed for `small`/`int8`
-- A modern Chrome/Edge for the microphone (AudioWorklet)
 - An API key for any OpenAI-compatible LLM endpoint (e.g. Google AI Studio Gemini, OpenRouter, Groq)
 
 ## Setup
